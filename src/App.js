@@ -4,6 +4,7 @@ import { ThemeProvider } from "styled-components"
 import GlobalStyles, { darkTheme } from "./styles/global-styles"
 import { AppWrap, NavBarWrap, MainWrap, RightSideWrap, LeftSideWrap } from "./components/layout-components"
 import NavBar from './components/NavBar'
+import LeftSidebar from "./components/left-sidebar/Left-Sidebar"
 
 function App() {
 	return (
@@ -11,7 +12,7 @@ function App() {
 			<GlobalStyles />
 			<AppWrap>
         <NavBar />
-        <LeftSideWrap></LeftSideWrap>
+        <LeftSidebar />
         <MainWrap></MainWrap>
         <RightSideWrap></RightSideWrap>
 			</AppWrap>

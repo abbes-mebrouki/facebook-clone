@@ -27,6 +27,7 @@ export const darkTheme = {
   iconBtnBgHover: 'rgb(78, 79, 80)',
   primaryBlueColor: 'rgb(45, 136, 255)',
   lighterText: 'rgb(245, 245, 245)',
+  sideNavHoverBg: 'rgb(48, 48, 49)',
 
 }
 

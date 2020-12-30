@@ -42,6 +42,11 @@ export const LeftSideWrap = styled.div`
   width: 302px;
   height: 100vh;
   background-color: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 15px 8px 8px 8px;
 `
 
 // ------------------------ Left Side bar ------------------------
