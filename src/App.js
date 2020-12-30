@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react"
+
+import { ThemeProvider } from "styled-components"
+import GlobalStyles, { darkTheme } from "./styles/global-styles"
+import { AppWrap, NavBarWrap, MainWrap, RightSideWrap, LeftSideWrap } from "./components/layout-components"
+import NavBar from './components/NavBar'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<ThemeProvider theme={darkTheme}>
+			<GlobalStyles />
+			<AppWrap>
+        <NavBar />
+        <LeftSideWrap></LeftSideWrap>
+        <MainWrap></MainWrap>
+        <RightSideWrap></RightSideWrap>
+			</AppWrap>
+		</ThemeProvider>
+	)
 }
 
-export default App;
+export default App
