@@ -12,6 +12,7 @@ const GlobalStyles = createGlobalStyle`
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: ${({theme}) => theme.appBg};
     color: ${({theme}) => theme.primaryText};
+    
   }
 
 `
@@ -25,6 +26,7 @@ export const darkTheme = {
   secondaryText: 'rgb(176,179,184)',
   iconBtnBgHover: 'rgb(78, 79, 80)',
   primaryBlueColor: 'rgb(45, 136, 255)',
+  lighterText: 'rgb(245, 245, 245)',
 
 }
 
