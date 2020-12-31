@@ -9,7 +9,8 @@ import {
 	NavIconButton,
 	NavAvatar,
 	NavProfileButton,
-  NavBadge,
+	NavBadge,
+	MeBadge,
 } from "./raw-components"
 
 // ---- icons
@@ -58,6 +59,7 @@ const NavBarRightWrap = styled.div`
 	background-color: inherit;
 	overflow-y: hidden;
 	width: fit-content;
+	height: 100%;
 `
 const NavBarMiddleWrap = styled.div`
 	display: flex;
@@ -85,21 +87,23 @@ export default function NavBar() {
 					<UsersIcon />
 				</MiddleNavButton>
 				<MiddleNavButton>
-					<NavBadge badgeContent={3} color='secondary'>
-            <TvIcon />
-          </NavBadge>
+					<MeBadge badgeContent={3} >
+						<TvIcon />
+					</MeBadge>
 				</MiddleNavButton>
 				<MiddleNavButton>
 					<RiStore2Line />
 				</MiddleNavButton>
 				<MiddleNavButton>
-					<GroupsIcon />
+					<MeBadge >
+						<GroupsIcon />
+					</MeBadge>
 				</MiddleNavButton>
 			</NavBarMiddleWrap>
 			<NavBarRightWrap>
 				<NavProfileButton>
 					<NavAvatar alt="Abbes trov" src={AvatarImg} />
-          <h4>Abbes</h4>
+					<h4>Abbes</h4>
 				</NavProfileButton>
 				<NavIconButton>
 					<PlusIcon />
@@ -107,11 +111,11 @@ export default function NavBar() {
 				<NavIconButton>
 					<MessengerIcon />
 				</NavIconButton>
-				<NavIconButton>
-          <NavBadge badgeContent={6} color='secondary'>
-            <NotificationsIcon/>
-          </NavBadge>
-				</NavIconButton>
+				<MeBadge badgeContent={6} overlap="circle">
+					<NavIconButton>
+						<NotificationsIcon />
+					</NavIconButton>
+				</MeBadge>
 				<NavIconButton>
 					<AccountArrowIcon />
 				</NavIconButton>

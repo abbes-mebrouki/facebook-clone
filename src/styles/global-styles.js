@@ -29,7 +29,19 @@ export const darkTheme = {
   lighterText: 'rgb(245, 245, 245)',
   sideNavHoverBg: 'rgb(48, 48, 49)',
 
+  redColor: 'rgb(242, 62, 92)',
+  greenColor: 'rgb(88, 196, 114)',
+  yellowColor: 'rgb(248, 192, 62)',
+
 }
 
+
+export const ScreenSizes = {
+  xs: '540px',
+  sm: '680px',
+  md: '880px',
+  lg: '1360px',
+  xl: '1400px'
+}
 
 export default GlobalStyles
