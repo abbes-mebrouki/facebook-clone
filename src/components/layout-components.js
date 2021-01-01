@@ -1,5 +1,8 @@
 import styled, {css} from 'styled-components'
 
+import { ScreenSizes } from '../styles/global-styles'
+const { xs, sm, md, lg, xl } = ScreenSizes
+
 export const AppWrap = styled.div`
   /* display: grid;
   grid-template-columns: 302px auto 302px;
@@ -23,6 +26,16 @@ export const BodyWrap = styled.div`
     'nav nav nav'
     'l-side main r-side';
     max-width: 1400px;
+
+
+    @media(max-width: ${md}){
+      grid-template-areas: 
+    'nav nav nav'
+    'main main main';
+  }
+
+    margin-bottom: 200px; // temp margin
+    
 `
 
 
@@ -39,6 +52,10 @@ export const NavBarWrap = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 0 16px;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 99;
   
 `
 
@@ -53,7 +70,7 @@ export const MainWrap = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding-top: 15px;
+  padding-top: 16px;
   `
 
 
@@ -68,6 +85,13 @@ export const LeftSideWrap = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   padding: 15px 8px 8px 8px;
+  position: fixed;
+  top: 56;
+  left: 0;
+
+  @media(max-width: ${md}){
+    display: none;
+  }
 `
 
 // ------------------------ Right Side bar ------------------------
@@ -80,7 +104,13 @@ export const RightSideWrap = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  padding: 16px 16px 10px;
-  
-  
+  padding: 16px 16px 10px 8px;
+  position: fixed;
+  top: 56;
+  right: 0;
+
+
+  @media(max-width: ${md}){
+    display: none;
+  }
 `

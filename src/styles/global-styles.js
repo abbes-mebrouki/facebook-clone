@@ -28,10 +28,15 @@ export const darkTheme = {
   primaryBlueColor: 'rgb(45, 136, 255)',
   lighterText: 'rgb(245, 245, 245)',
   sideNavHoverBg: 'rgb(48, 48, 49)',
+  deemColor: 'rgba(45, 136, 255, .2)', // temp name
+  blueLink: 'rgb(69, 153, 255)',
 
   redColor: 'rgb(242, 62, 92)',
   greenColor: 'rgb(88, 196, 114)',
   yellowColor: 'rgb(248, 192, 62)',
+
+  containerShadow: '0 1.4px 1px rgba(0, 0, 0, .1)',
+
 
 }
 

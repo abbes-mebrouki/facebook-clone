@@ -45,7 +45,7 @@ const NavBarLeftWrap = styled.div`
 	background-color: inherit;
 
 	max-height: 55px;
-	overflow-y: hidden;
+	/* overflow-y: hidden; */
 
 	img {
 		max-width: 40px;

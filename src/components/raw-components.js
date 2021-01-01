@@ -1,8 +1,12 @@
 import styled, { css } from "styled-components"
 
+import { ScreenSizes } from "../styles/global-styles"
+
 import IconButton from "@material-ui/core/IconButton"
 import Avatar from "@material-ui/core/Avatar"
 import { Badge } from "@material-ui/core"
+
+const { md } = ScreenSizes
 
 // -------------------- LEFT NAV BAR ------------------------------
 
@@ -17,11 +21,18 @@ export const InputWrap = styled.div`
 	border-radius: 30px;
 	width: 240px;
 
+	@media (max-width: ${md}) {
+		display: none;
+	}
 	${(props) =>
 		props.feedInput &&
 		css`
 			width: 100%;
 			padding: 0;
+			@media (max-width: ${md}) {
+		display: flex;
+	}
+  }
 		`}
 	height: 40px;
 `
@@ -97,38 +108,35 @@ export const MiddleNavButton = styled.div`
 // ------------------- Right NavBar -------------------------
 
 export const NavBadge = styled(Badge)`
-	
-		.MuiBadge-badge {
-			background-color: ${({ theme }) => theme.redColor};
-		}
-	
+	.MuiBadge-badge {
+		background-color: ${({ theme }) => theme.redColor};
+	}
 `
 
 export const MeBadge = styled(Badge)`
-	
-		.MuiBadge-badge {
-			${({ forChat, on }) =>
-				forChat
-					? on &&
-					  css`
-							background-color: rgb(50, 162, 77);
-							color: rgb(50, 162, 77);
-							box-shadow: 0 0 0 2px #000;
+	.MuiBadge-badge {
+		${({ forChat, on, theme}) =>
+			forChat
+				? on &&
+				  css`
+						background-color: rgb(50, 162, 77);
+						color: rgb(50, 162, 77);
+						box-shadow: 0 0 0 2px ${theme.appBg};
 
-							::after {
-								position: absolute;
-								top: 0;
-								left: 0;
-								width:  100%;
-								height: 100%;
-								border-radius: 50%;
-								content: '"';
-							}
-					  `
-					: css`
-							background-color: ${({ theme }) => theme.redColor};
-					  `}
-		}
+						::after {
+							position: absolute;
+							top: 0;
+							left: 0;
+							width: 100%;
+							height: 100%;
+							border-radius: 50%;
+							content: '"';
+						}
+				  `
+				: css`
+						background-color: ${({ theme }) => theme.redColor};
+				  `}
+	}
 `
 
 export const NavIconButton = styled(IconButton)`
@@ -199,6 +207,26 @@ export const MeAvatar = styled(Avatar)`
 			css`
 				height: 40px;
 				width: 40px;
+			`}
+		${(props) =>
+			props.socialAvatar &&
+			css`
+				height: 18px;
+				width:  18px;
+			`}
+		${(props) =>
+			props.roomAvatar &&
+			css`
+				height: 40px;
+				width:  40px;
+				margin-right: 16px;
+			`}
+			${(props) =>
+			props.storyAvatar &&
+			css`
+				height: 40px;
+				width:  40px;
+				border: 3px solid ${props.theme.blueLink};
 			`}
 	}
 `

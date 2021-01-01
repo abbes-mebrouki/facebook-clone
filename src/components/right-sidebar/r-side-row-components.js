@@ -8,9 +8,7 @@ export const RightSidebarTopElement = styled.div`
 		width: 100%;
 		height: 44px;
 		border-bottom: 1px solid ${theme.commonColor};
-		padding-bottom: 10px;
-    /* margin-left: 8px; */
-		/* border-radius: 9px; */
+		padding: 0 8px 10px;
 
 		h4 {
 			color: ${theme.secondaryText};
