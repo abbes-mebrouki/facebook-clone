@@ -3,6 +3,7 @@ import { ScreenSizes } from "../../styles/global-styles"
 import Button from "@material-ui/core/Button"
 import Badge from "@material-ui/core/Badge"
 import { withStyles } from "@material-ui/core/styles"
+import Dialog from "@material-ui/core/Dialog"
 
 const { xs, sm, md, lg, xl } = ScreenSizes
 
@@ -22,20 +23,18 @@ export const NewPostWrap = styled.div`
 `
 
 export const StoriesWrap = styled.div`
-	${({theme}) => css`
+	${({ theme }) => css`
 		width: 598px;
 		height: 230px;
 		padding: 8px 0 24px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-
 	`}
 `
 
-
 export const StoryWrap = styled.div`
-	${({theme}) => css`
+	${({ theme }) => css`
 		width: 112px;
 		min-width: 112px;
 		height: 198px;
@@ -48,13 +47,12 @@ export const StoryWrap = styled.div`
 		background-color: ${theme.lightDark};
 		margin: 4px;
 		background-size: cover;
-		box-shadow:inset 0 0 0 2000px rgba(0, 0, 0, 0.2);
+		box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.2);
 		background-repeat: no-repeat;
-		
-		h4{
-			font-size: .79em;
-			letter-spacing: .5px;
-			
+
+		h4 {
+			font-size: 0.79em;
+			letter-spacing: 0.5px;
 		}
 	`}
 `
@@ -71,13 +69,12 @@ export const CreateRoomWrap = styled.div`
 		justify-content: flex-start;
 		align-items: center;
 
-		.room-avatars-wrap{
+		.room-avatars-wrap {
 			display: grid;
 			grid-template-columns: auto;
 			grid-auto-flow: column;
 			grid-column-gap: 16px;
 		}
-		
 	`}
 `
 
@@ -97,7 +94,7 @@ export const FeedOptionButtons = styled.div`
 	border-top: 1px solid ${({ theme }) => theme.commonColor};
 `
 
-const getFeedButtonIconColor = (iconColor, theme) => {
+export const getFeedButtonIconColor = (iconColor, theme) => {
 	switch (iconColor) {
 		case "red":
 			return theme.redColor
@@ -105,18 +102,78 @@ const getFeedButtonIconColor = (iconColor, theme) => {
 			return theme.greenColor
 		case "yellow":
 			return theme.yellowColor
+		case "orange":
+			return theme.orangeColor
+		case "blue":
+			return theme.blueColor
+		case "dark":
+			return theme.darkColor
 		default:
 			return theme.primaryText
 	}
 }
 
 export const FeedButton = styled(Button)`
-	${({ roundedBtn, theme, feedBtn, socialBtn, iconColor, smallSize }) => css`
+	${({
+		roundedBtn,
+		theme,
+		feedBtn,
+		socialBtn,
+		iconColor,
+		smallSize,
+		dialogBtn,
+		clearBtn,
+		disable,
+	}) => css`
 		color: ${theme.primaryText};
 		background-color: inherit;
 		flex: 1;
 		font-size: 0.83em;
 		color: ${theme.secondaryText};
+
+		${clearBtn &&
+		css`
+			background-color: ${theme.primaryBlueColor};
+			width: 100%;
+			max-height: 36px;
+			margin-top: 16px;
+			color: ${theme.primaryText};
+
+			${disable &&
+			css`
+				background-color: ${theme.disabledBgColor};
+				color: ${theme.disabledTextColor};
+				&:hover {
+					/* background-color: red; */
+
+					cursor: not-allowed;
+				}
+			`}
+
+			.MuiButton-label {
+				font-size: 14px;
+				letter-spacing: -0.5px;
+			}
+		`}
+
+		${dialogBtn &&
+		css`
+			background-color: ${theme.commonColor};
+			width: 93px;
+			height: 22px;
+			padding: 4px 8px;
+			color: ${theme.primaryText};
+
+			.MuiButton-iconSizeMedium > *:first-child {
+				font-size: 12px;
+			}
+
+			.MuiButton-label {
+				font-size: 12px;
+				white-space: nowrap;
+				width: fit-content;
+			}
+		`}
 
 		${roundedBtn &&
 		css`
@@ -369,5 +426,177 @@ export const SocialButtonsWrap = styled.div`
 		width: 100%;
 		border-radius: 0 0 8px 8px;
 		/* padding: 0 16px; */
+	`}
+`
+
+// ------------------------------- Create New Post Dialog --------------------------
+
+export const MeDialog = styled(Dialog)`
+	${({ theme }) => css`
+		.MuiDialog-paper {
+			
+			border-radius: 12px;
+			background-color: ${theme.lightDark};
+		}
+		.MuiDialogContent-root {
+			padding: 0;
+		}
+	`}
+`
+
+export const DialogContentWrap = styled.div`
+	${({ theme }) => css`
+		background-color: ${theme.lightDark};
+		width: 500px;
+		height: 480px;
+		min-height: 430px;
+		max-height: 80vh;
+		max-height: 400px;
+		/* overflow-y: scroll; */
+
+		border-radius: 12px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		color: ${theme.primaryText};
+	`}
+`
+
+export const NewPostDialogHeaderWrap = styled.div`
+	${({ theme }) => css`
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		padding: 0 16px;
+		width: 100%;
+		height: 132px;
+
+		.title-and-close-btn {
+			display: grid;
+			grid-template-columns: 1fr 36px;
+			justify-content: space-between;
+			align-items: center;
+			border-bottom: 1px solid ${theme.darkerBorderColor};
+			width: 100%;
+			height: 50%;
+
+			h4 {
+				justify-self: center;
+				margin-left: 36px;
+				font-size: 20px;
+			}
+		}
+
+		.user {
+			padding: 16px 0;
+			height: 50%;
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+			width: 100%;
+
+			.username-and-pup-type {
+				/* border: 1px solid #444; */
+				margin-left: 12px;
+
+				h4 {
+					font-size: 14px;
+					margin-bottom: 4px;
+				}
+			}
+		}
+	`}
+`
+
+export const NewPostDialogInputWrap = styled.div`
+	${({ theme }) => css`
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: flex-start;
+		width: 100%;
+		min-height: 155px;
+
+		padding: 0 16px;
+		flex: 1;
+
+		textarea {
+			background-color: ${theme.lightDark};
+			width: 100%;
+			outline-width: 0;
+			resize: none;
+			/* height: 100%; */
+			font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+			color: ${theme.primaryText};
+			border: none;
+			font-size: 24px;
+			::placeholder {
+				color: ${theme.secondaryText2};
+				
+			}
+		}
+
+		.post-bg-and-emojis {
+			display: flex;
+			justify-content: space-between;
+			align-items: flex-end;
+			width: 100%;
+			height: 38px;
+
+			.bgs-btn {
+				&:hover {
+					cursor: pointer;
+				}
+				img {
+					max-width: 38px;
+					max-height: 38px;
+				}
+			}
+
+			svg {
+				font-size: 24px;
+				color: ${theme.darkBorderColor};
+
+				&:hover {
+					cursor: pointer;
+					color: ${theme.secondaryText2};
+				}
+			}
+		}
+	`}
+`
+
+export const NewPostDialogFooterWrap = styled.div`
+	${({ theme }) => css`
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		padding: 16px;
+		width: 100%;
+		height: 142px;
+
+		.add-to-post-wrap {
+			width: 100%;
+			height: 58px;
+			border: 1px solid ${theme.darkBorderColor};
+			border-radius: 8px;
+			/* margin: 0 16px; */
+			padding: 0 16px;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+
+			h4 {
+				font-size: 14px;
+			}
+			.icons-wrap {
+				display: grid;
+				grid-template-columns: repeat(6, 36px);
+				grid-column-gap: 4px;
+			}
+		}
 	`}
 `

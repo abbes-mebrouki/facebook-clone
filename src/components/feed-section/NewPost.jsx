@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState} from "react"
 
 import { MainWrap } from "../layout-components"
 import {
@@ -12,9 +12,22 @@ import { InputWrap, Input, MeAvatar, MeBadge } from "../raw-components"
 import ProfiePic from "../../imgs/avatar-img.jpg"
 
 import Icons from "../../icons"
+import NewPostDialog from "./NewPostDialog"
+import NewPostDialogContent from "./NewPostDialogContent"
 
 export default function NewPost() {
 	const { FeedLiveIcon, FeedPhotoIcon, FeedFeelingIcon } = Icons
+
+	const [open, setOpen] = useState(false)
+
+	const openCreateNewPostDialog = () => {
+		setOpen(true)
+		console.log('open :', open)
+	}
+
+	const closeCreateNewPostDialog = () => {
+		setOpen(false)
+	}
 
 	return (
 			<NewPostWrap>
@@ -22,9 +35,13 @@ export default function NewPost() {
 					<MeBadge>
 						<MeAvatar FeedNav src={ProfiePic} />
 					</MeBadge>
-					<InputWrap feedInput>
-						<Input feedInput placeholder={`What's in your mind, Abbes?`} />
+					<InputWrap feedInput onClick={openCreateNewPostDialog}>
+						<Input disabled feedInput placeholder={`What's in your mind, Abbes?`}/>
 					</InputWrap>
+					{/* <NewPostDialog isOpen={open} handleClose={closeCreateNewPostDialog} dialogContent={<NewPostDialogContent />} /> */}
+					<NewPostDialog isOpen={open} handleClose={closeCreateNewPostDialog}>
+						<NewPostDialogContent />
+					</NewPostDialog>
 				</FeedAvatarInputWrap>
 				<FeedOptionButtons>
 					<FeedButton
@@ -52,6 +69,9 @@ export default function NewPost() {
 						Feeling/Avtivity
 					</FeedButton>
 				</FeedOptionButtons>
+				
+
+				
 			</NewPostWrap>
 	)
 }

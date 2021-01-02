@@ -9,9 +9,17 @@ import {FaRegCommentAlt as CommentIcon} from 'react-icons/fa'
 import {BiShare as ShareIcon} from 'react-icons/bi'
 import {AiOutlineLike as LikeIcon} from 'react-icons/ai'
 import {MdVideoCall as VideoCallIcon} from 'react-icons/md'
-// import VideoCallIcon from './imgs/VideoCallIcon.svg'
+import {CgClose as CloseIcon} from 'react-icons/cg'
+import {BsFillCaretDownFill as DownIcon} from 'react-icons/bs'
+import {BsLockFill as LockIcon} from 'react-icons/bs'
+import {TiLocation as LocationIcon} from 'react-icons/ti'
+import {ImUser as PersonIcon} from 'react-icons/im'
+import {VscSmiley as SmileyFaceIcon} from 'react-icons/vsc'
 
 // import { as } from 'react-icons/'
+
+
+// import VideoCallIcon from './imgs/VideoCallIcon.svg'
 
 
 
@@ -43,6 +51,13 @@ const Icons = {
   ShareIcon,
   LikeIcon,
   VideoCallIcon,
+  CloseIcon,
+  DownIcon,
+  LockIcon,
+  PersonIcon,
+  LocationIcon,
+  SmileyFaceIcon,
+  
 }
 
 

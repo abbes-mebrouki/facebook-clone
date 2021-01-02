@@ -15,6 +15,16 @@ const GlobalStyles = createGlobalStyle`
     
   }
 
+  .MuiDialog-container { // keep it here untill I find where to put it.
+    background-color: rgba(0, 0, 0, .2);
+  }
+
+  .MuiPaper-root {
+    position: absolute;
+    top: 50px;
+    left: calc(50vw - 290px);
+  }
+
 `
 
 
@@ -30,10 +40,20 @@ export const darkTheme = {
   sideNavHoverBg: 'rgb(48, 48, 49)',
   deemColor: 'rgba(45, 136, 255, .2)', // temp name
   blueLink: 'rgb(69, 153, 255)',
+  darkBorderColor: 'rgb(62, 64, 66)',
+  darkerBorderColor: 'rgb(47, 48, 49)',
+  secondaryText2: 'rgb(165, 168, 173)',
+  disabledBgColor: 'rgb(80, 81, 81)',
+  disabledTextColor: 'rgb(132, 133, 133)',
 
   redColor: 'rgb(242, 62, 92)',
   greenColor: 'rgb(88, 196, 114)',
   yellowColor: 'rgb(248, 192, 62)',
+  orangeColor: 'rgb(246, 101, 81)',
+  blueColor: 'rgb(48, 133, 243)',
+  darkColor: 'rgb(112, 119, 127)',
+
+
 
   containerShadow: '0 1.4px 1px rgba(0, 0, 0, .1)',
 

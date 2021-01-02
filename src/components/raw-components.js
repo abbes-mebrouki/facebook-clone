@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components"
-
+import {getFeedButtonIconColor} from './feed-section/feed-raw-components'
 import { ScreenSizes } from "../styles/global-styles"
 
 import IconButton from "@material-ui/core/IconButton"
@@ -115,7 +115,7 @@ export const NavBadge = styled(Badge)`
 
 export const MeBadge = styled(Badge)`
 	.MuiBadge-badge {
-		${({ forChat, on, theme}) =>
+		${({ forChat, on, theme }) =>
 			forChat
 				? on &&
 				  css`
@@ -212,21 +212,40 @@ export const MeAvatar = styled(Avatar)`
 			props.socialAvatar &&
 			css`
 				height: 18px;
-				width:  18px;
+				width: 18px;
 			`}
 		${(props) =>
 			props.roomAvatar &&
 			css`
 				height: 40px;
-				width:  40px;
+				width: 40px;
 				margin-right: 16px;
 			`}
 			${(props) =>
 			props.storyAvatar &&
 			css`
 				height: 40px;
-				width:  40px;
+				width: 40px;
 				border: 3px solid ${props.theme.blueLink};
 			`}
 	}
+`
+
+export const MeIconButton = styled(IconButton)`
+	${({ theme, iconColor, defaultBtn }) => css`
+		background-color: ${defaultBtn ? theme.lightDark : theme.commonColor};
+		width: 36px;
+		height: 36px;
+		padding: 0;
+		/* box-shadow: 0 0 2px rgba(0, 0, 0, .06); */
+
+		svg {
+			color: ${getFeedButtonIconColor(iconColor, theme)};
+			font-size: 24px;
+		}
+
+		&:hover {
+			background-color: ${theme.iconBtnBgHover};
+		}
+	`}
 `
