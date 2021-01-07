@@ -15,6 +15,7 @@ import {BsLockFill as LockIcon} from 'react-icons/bs'
 import {TiLocation as LocationIcon} from 'react-icons/ti'
 import {ImUser as PersonIcon} from 'react-icons/im'
 import {VscSmiley as SmileyFaceIcon} from 'react-icons/vsc'
+import {GiHamburgerMenu as HumburgerIcon} from 'react-icons/gi'
 
 // import { as } from 'react-icons/'
 
@@ -57,7 +58,7 @@ const Icons = {
   PersonIcon,
   LocationIcon,
   SmileyFaceIcon,
-  
+  HumburgerIcon,
 }
 
 

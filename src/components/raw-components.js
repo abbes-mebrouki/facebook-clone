@@ -1,62 +1,61 @@
 import styled, { css } from "styled-components"
-import {getFeedButtonIconColor} from './feed-section/feed-raw-components'
-import { ScreenSizes } from "../styles/global-styles"
+import { getFeedButtonIconColor } from "./feed-section/feed-raw-components"
+import { ScreenSizes, NavSreenSizes } from "../styles/global-styles"
 
 import IconButton from "@material-ui/core/IconButton"
 import Avatar from "@material-ui/core/Avatar"
-import { Badge } from "@material-ui/core"
+import { Badge, Button } from "@material-ui/core"
 
 const { md } = ScreenSizes
+const { navSc1366, navSc1256, navSc1096, navSc996, navSc896 ,navSc696 } = NavSreenSizes
 
 // -------------------- LEFT NAV BAR ------------------------------
 
 export const InputWrap = styled.div`
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding-left: 10px;
-	padding-right: 10px;
-	background-color: ${({ theme }) => theme.commonColor};
-	margin-left: 8px;
-	border-radius: 30px;
-	width: 240px;
+	${({ theme, feedInput }) => css`
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding-left: 10px;
+		padding-right: 10px;
+		background-color: ${theme.commonColor};
+		margin-left: 8px;
+		border-radius: 30px;
+		width: 240px;
+		height: 40px;
 
-	@media (max-width: ${md}) {
-		display: none;
-	}
-	${(props) =>
-		props.feedInput &&
+		${feedInput &&
 		css`
 			width: 100%;
 			padding: 0;
-			@media (max-width: ${md}) {
-		display: flex;
-	}
-  }
 		`}
-	height: 40px;
+
+		@media (max-width: ${navSc1256}) {
+			width: ${!feedInput && "40px"};
+		} ;
+	`}
 `
 
 export const Input = styled.input`
-	margin-left: 4px;
-	background-color: inherit;
-	flex: 1;
-	border-radius: 30px;
-	/* width: 240px; */
-	height: 100%;
-	border: none;
-	padding-top: 1px;
-	color: ${({ theme }) => theme.primaryText};
-	outline-width: 0;
+	${({ theme, feedInput }) => css`
+		margin-left: 4px;
+		background-color: inherit;
+		flex: 1;
+		border-radius: 30px;
+		/* width: 240px; */
+		height: 100%;
+		border: none;
+		padding-top: 1px;
+		color: ${theme.primaryText};
+		outline-width: 0;
 
-	cursor: pointer;
-	::placeholder {
-		font-size: 1.13em;
-		color: rgb(166, 169, 174);
-	}
+		cursor: pointer;
+		::placeholder {
+			font-size: 1.13em;
+			color: rgb(166, 169, 174);
+		}
 
-	${(props) =>
-		props.feedInput &&
+		${feedInput &&
 		css`
 			margin-left: 0;
 			padding: 0 12px;
@@ -68,41 +67,83 @@ export const Input = styled.input`
 				background-color: ${({ theme }) => theme.iconBtnBgHover};
 			}
 		`}
+
+		@media (max-width: ${navSc1256}) {
+			display: ${!feedInput && "none"};
+		}
+	`}
 `
 
 // -------------------- MIDDLE NAV BAR ------------------------------
 
-export const MiddleNavButton = styled.div`
-	height: 55px;
-	width: 112px;
-	display: grid;
-	place-items: center;
-	cursor: pointer;
-	svg {
-		font-size: 25px;
-		color: ${({ theme }) => theme.secondaryText};
-	}
+export const MiddleNavButton = styled(Button)`
+	${({ theme, active, groupsBtn, hamBtn}) => css`
+		height: 49px;
+		background-color: inherit;
+		width: 130px;
+		max-width: 130px;
+		display: grid;
+		place-items: center;
+		cursor: pointer;
+		margin: 0 4px;
 
-	${(props) =>
-		props.active &&
+		svg {
+			font-size: 25px;
+			color: ${theme.secondaryText};
+		}
+
+	
+
+		${hamBtn &&  css`
+			display: none;
+		`}
+
+		${active &&
 		css`
+			height: 55px;
+			border-radius: 0;
 			border-bottom: 3px solid ${({ theme }) => theme.primaryBlueColor};
+			
 			svg {
 				font-size: 25px;
 				color: ${({ theme }) => theme.primaryBlueColor};
 			}
 		`}
 
-	&:hover {
-		${(props) =>
-			props.active
-				? css``
-				: css`
-						background-color: ${({ theme }) => theme.commonColor};
-						border-radius: 12px;
-						border: 4px solid ${({ theme }) => theme.lightDark};
-				  `}
-	}
+		&:hover {
+			background-color: ${active ? "inherit" : theme.commonColor};
+		}
+
+		@media (max-width: ${navSc1366}) {
+			width: 112px;
+		}
+		@media (max-width: ${navSc1256}) { // default 1096
+			display: ${hamBtn && 'grid'};
+			max-width: 109px;
+
+			${groupsBtn && css`
+				display: none;
+			`}
+		}
+		@media (max-width: ${navSc696}) {
+			display: ${!hamBtn && 'none'}
+			
+			
+		}
+
+		@media (max-width: ${navSc996}) {
+			width: 95px
+		}
+		@media (max-width: ${navSc896}) {
+			width: 78px;
+		}
+		@media (max-width: 820px) {
+			width: 66px;
+		}
+		@media (max-width: 756px) {
+			width: 56px;
+		}
+	`}
 `
 
 // ------------------- Right NavBar -------------------------
@@ -135,6 +176,7 @@ export const MeBadge = styled(Badge)`
 				  `
 				: css`
 						background-color: ${({ theme }) => theme.redColor};
+						color: ${theme.primaryText};
 				  `}
 	}
 `
@@ -159,24 +201,30 @@ export const NavIconButton = styled(IconButton)`
 `
 
 export const NavProfileButton = styled.div`
-	display: flex;
-	justify-content: flex-start;
-	align-items: center;
-	height: 38px;
-	border-radius: 30px;
-	padding: 3px 10px 3px 4px;
-	margin-right: 8px;
+	${({ theme }) => css`
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		height: 38px;
+		border-radius: 30px;
+		padding: 3px 10px 3px 4px;
+		margin-right: 8px;
 
-	h4 {
-		/* font-weight: 400; */
-		font-size: 0.85em;
-		margin-left: 8px;
-	}
+		h4 {
+			/* font-weight: 400; */
+			font-size: 0.85em;
+			margin-left: 8px;
+		}
 
-	&:hover {
-		background-color: ${({ theme }) => theme.commonColor};
-		cursor: pointer;
-	}
+		&:hover {
+			background-color: ${theme.commonColor};
+			cursor: pointer;
+		}
+
+		@media (max-width: ${navSc1256}) {
+			display: none;
+		}
+	`}
 `
 
 export const NavAvatar = styled(Avatar)`

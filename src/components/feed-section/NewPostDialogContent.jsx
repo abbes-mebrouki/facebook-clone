@@ -13,9 +13,9 @@ import bgsImg from '../../imgs/new-post-dialog-fonts-img.png'
 
 import AvatarPic from "../../imgs/avatar-img.jpg"
 
-export default function NewPostDialogContent(props) {
+export default function NewPostDialogContent({handleClose}) {
 
-  console.log('content props: ' , props);
+  // console.log('content props: ' , props);
 	const {
 		CloseIcon,
 		FeedPhotoIcon,
@@ -41,7 +41,7 @@ export default function NewPostDialogContent(props) {
 			<NewPostDialogHeaderWrap>
 				<div className="title-and-close-btn">
 					<h4>Create Post</h4>
-					<MeIconButton>
+					<MeIconButton onClick={handleClose}>
 						<CloseIcon />
 					</MeIconButton>
 				</div>

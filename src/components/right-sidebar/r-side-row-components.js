@@ -7,6 +7,7 @@ export const RightSidebarTopElement = styled.div`
 		justify-content: space-between;
 		width: 100%;
 		height: 44px;
+		min-height: 44px;
 		border-bottom: 1px solid ${theme.commonColor};
 		padding: 0 8px 10px;
 
@@ -47,6 +48,7 @@ export const ChatListItem = styled.div`
 		justify-content: flex-start;
 		width: 100%;
 		height: 44px;
+		min-height: 44px;
 		border-radius: 7px;
     padding: 0 8px;
     

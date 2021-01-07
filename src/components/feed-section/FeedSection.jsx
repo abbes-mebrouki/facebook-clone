@@ -17,15 +17,16 @@ import {
 
 // import AvatarGroup from '@material-ui/lab/AvatarGroup';
 
-import { InputWrap, Input, MeAvatar,  } from "../raw-components"
+import { InputWrap, Input, MeAvatar } from "../raw-components"
 
 import ProfiePic from "../../imgs/avatar-img.jpg"
+import { isMobileOnly } from "react-device-detect"
 
 import Icons from "../../icons"
 import NewPost from "./NewPost"
 import { Comment } from "@material-ui/icons"
 import FeedPost from "./FeedPost"
-import FeedData from './feed-section-data'
+import FeedData from "./feed-section-data"
 import CreateRoomCard from "./CreateRoomCard"
 import Storeis from "./Storeis"
 
@@ -37,21 +38,30 @@ export default function FeedSection() {
 		SoLoveIcon,
 		SoWowIcon,
 		SoAngryIcon,
-		LikeIcon, 
+		LikeIcon,
 		CommentIcon,
-		ShareIcon
+		ShareIcon,
 	} = Icons
 
 	return (
 		<MainWrap>
-			<Storeis />
-			<NewPost />
-			<CreateRoomCard />
-			
-			{FeedData.map(item => (
-				<FeedPost key={item.id} postData={item}/>
+			{isMobileOnly ? (
+				<>
+					<NewPost />
+					<CreateRoomCard />
+					<Storeis />
+				</>
+			) : (
+				<>
+					<Storeis />
+					<NewPost />
+					<CreateRoomCard />
+				</>
+			)}
+
+			{FeedData.map((item) => (
+				<FeedPost key={item.id} postData={item} />
 			))}
-			
 		</MainWrap>
 	)
 }

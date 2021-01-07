@@ -1,11 +1,119 @@
 import styled, { css } from "styled-components"
-import { ScreenSizes } from "../../styles/global-styles"
+import { ScreenSizes, NavSreenSizes } from "../../styles/global-styles"
 import Button from "@material-ui/core/Button"
 import Badge from "@material-ui/core/Badge"
 import { withStyles } from "@material-ui/core/styles"
 import Dialog from "@material-ui/core/Dialog"
 
 const { xs, sm, md, lg, xl } = ScreenSizes
+const {
+	navSc1366,
+	navSc1256,
+	navSc1096,
+	navSc996,
+	navSc896,
+	navSc696,
+} = NavSreenSizes
+
+const _696ScreenStyles = (component = null) => {
+	const sharedStyles = css`
+		width: 100%;
+		border-radius: 0;
+	`
+	// New Post Wrap
+	if (component === "stories_wrap") {
+		return css`
+			@media (max-width: ${navSc696}) {
+				// non shared styles
+				max-width: unset;
+				background-color: rgb(36, 37, 38); // temp value, change it later.
+				width: 100%;
+				justify-content: flex-start;
+				overflow-x: scroll;
+				padding: 0 8px 0 4px;
+				padding-right: 12px;
+				margin-top: 16px;
+			}
+		`
+	}
+
+	if (component === "story_wrap") {
+		return css`
+			@media (max-width: ${navSc696}) {
+				
+
+				// non shared styles
+				
+			}
+		`
+	}
+	if (component === "new_post_wrap") {
+		return css`
+			@media (max-width: ${navSc696}) {
+				${sharedStyles};
+
+				// non shared styles
+				margin-top: ${component === "new_post_wrap" ? "0" : "10px"};
+			}
+		`
+	}
+
+	// Feed Button
+	if (component === "new_post_wrap_btn") {
+		return css`
+			@media (max-width: ${navSc696}) {
+				// non shared styles
+				font-size: 12px;
+				.MuiButton-iconSizeMedium > *:first-child {
+					font-size: 18px;
+				}
+			}
+		`
+	}
+	if (component === "dialog_content_wrap") {
+		return css`
+			@media (max-width: ${navSc696}) {
+				// non shared styles
+				width: 100%;
+				border-radius: 12px 12px 0 0;
+			}
+		`
+	}
+	if (component === "mui-dialog-content-root") {
+		return css`
+			@media (max-width: ${navSc696}) {
+				// non shared styles
+
+				border-radius: 12px 12px 0 0;
+			}
+		`
+	}
+
+	// Default return
+	return css`
+		@media (max-width: ${navSc696}) {
+			${sharedStyles}
+		}
+	`
+}
+
+const FeedComponentsWidths = css`
+	/* max-width: 500px; */
+	width: 500px;
+	/* max-width: 500px; */
+	/* min-width: 500px; */
+	
+	/* max-width: 680px; */
+	/* min-width: 450px; */
+	
+	/* @media (max-width: 1140px){
+		min-width: 460px;
+	}
+	@media (max-width: 1096px){
+		min-width: 500px;
+	} */
+`
+
 
 export const NewPostWrap = styled.div`
 	display: flex;
@@ -13,30 +121,45 @@ export const NewPostWrap = styled.div`
 	padding: 12px 16px 10px;
 	background-color: ${({ theme }) => theme.lightDark};
 	border-radius: 9px;
-	width: 500px;
-	height: 114px;
+	${FeedComponentsWidths}
+	height: 118px;
 	box-shadow: ${({ theme }) => theme.containerShadow};
 
-	@media (min-width: ${xl}) {
-		width: 680px;
-	}
+	${_696ScreenStyles("new_post_wrap")}
 `
 
 export const StoriesWrap = styled.div`
 	${({ theme }) => css`
-		width: 598px;
+		max-width: 598px;
 		height: 230px;
 		padding: 8px 0 24px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
+
+
+		/* width: 598px;
+		height: 230px;
+		padding: 8px 0 24px;
+		display: grid;
+		grid-template-columns: repeat(5, 1fr);
+		grid-column-gap: 8px;
+		background-color: black;
+		align-items: center;
+		justify-content: center; */
+
+
+
+		${_696ScreenStyles('stories_wrap')}	
 	`}
 `
 
 export const StoryWrap = styled.div`
 	${({ theme }) => css`
 		width: 112px;
-		min-width: 112px;
+		/* max-width: 106px; */
+		/* width: 100%; */
+
 		height: 198px;
 		border-radius: 10px;
 		display: flex;
@@ -45,7 +168,7 @@ export const StoryWrap = styled.div`
 		align-items: flex-start;
 		padding: 12px 16px;
 		background-color: ${theme.lightDark};
-		margin: 4px;
+		margin: 0 4px;
 		background-size: cover;
 		box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.2);
 		background-repeat: no-repeat;
@@ -54,12 +177,15 @@ export const StoryWrap = styled.div`
 			font-size: 0.79em;
 			letter-spacing: 0.5px;
 		}
+
+		${_696ScreenStyles('story_wrap')}
+	
 	`}
 `
 
 export const CreateRoomWrap = styled.div`
 	${({ theme }) => css`
-		width: 500px;
+		${FeedComponentsWidths}
 		height: 72px;
 		padding: 8px 16px;
 		border-radius: 8px;
@@ -75,6 +201,8 @@ export const CreateRoomWrap = styled.div`
 			grid-auto-flow: column;
 			grid-column-gap: 16px;
 		}
+
+		${_696ScreenStyles()}
 	`}
 `
 
@@ -92,6 +220,7 @@ export const FeedOptionButtons = styled.div`
 	margin-top: 12px;
 	padding-top: 8px;
 	border-top: 1px solid ${({ theme }) => theme.commonColor};
+	height: 100%;
 `
 
 export const getFeedButtonIconColor = (iconColor, theme) => {
@@ -144,7 +273,6 @@ export const FeedButton = styled(Button)`
 				background-color: ${theme.disabledBgColor};
 				color: ${theme.disabledTextColor};
 				&:hover {
-					/* background-color: red; */
 
 					cursor: not-allowed;
 				}
@@ -207,6 +335,11 @@ export const FeedButton = styled(Button)`
 		&:hover {
 			background-color: ${({ theme }) => theme.commonColor};
 		}
+
+		${feedBtn &&
+		css`
+			${_696ScreenStyles("new_post_wrap_btn")}
+		`}
 	`}
 `
 
@@ -256,11 +389,14 @@ export const PostWrap = styled.div`
 		flex-direction: column;
 		justify-content: flex-start;
 		align-items: center;
-		width: 500px;
+		/* width: 500px; */
+		${FeedComponentsWidths}
 		background-color: ${theme.lightDark};
 		margin-top: 16px;
 		border-radius: 8px;
 		box-shadow: ${theme.containerShadow};
+
+		${_696ScreenStyles()}
 	`}
 `
 
@@ -434,12 +570,16 @@ export const SocialButtonsWrap = styled.div`
 export const MeDialog = styled(Dialog)`
 	${({ theme }) => css`
 		.MuiDialog-paper {
-			
 			border-radius: 12px;
 			background-color: ${theme.lightDark};
+
+			@media (max-width: ${navSc696}) {
+				border-radius: 12px 12px 0 0;				
+			}
 		}
 		.MuiDialogContent-root {
 			padding: 0;
+			${_696ScreenStyles("mui-dialog-content-root")}
 		}
 	`}
 `
@@ -460,6 +600,8 @@ export const DialogContentWrap = styled.div`
 		justify-content: center;
 		align-items: center;
 		color: ${theme.primaryText};
+
+		${_696ScreenStyles("dialog_content_wrap")}
 	`}
 `
 
@@ -527,14 +669,12 @@ export const NewPostDialogInputWrap = styled.div`
 			width: 100%;
 			outline-width: 0;
 			resize: none;
-			/* height: 100%; */
 			font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 			color: ${theme.primaryText};
 			border: none;
 			font-size: 24px;
 			::placeholder {
 				color: ${theme.secondaryText2};
-				
 			}
 		}
 
@@ -596,6 +736,17 @@ export const NewPostDialogFooterWrap = styled.div`
 				display: grid;
 				grid-template-columns: repeat(6, 36px);
 				grid-column-gap: 4px;
+			}
+		}
+
+
+		@media (max-width: ${navSc696}){
+			.add-to-post-wrap h4{
+				font-size: 13px;	
+			}
+
+			.icons-wrap svg{
+				font-size: 18px;
 			}
 		}
 	`}

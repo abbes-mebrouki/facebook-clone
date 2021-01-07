@@ -22,7 +22,7 @@ export default function NewPost() {
 
 	const openCreateNewPostDialog = () => {
 		setOpen(true)
-		console.log('open :', open)
+		// console.log('open :', open)
 	}
 
 	const closeCreateNewPostDialog = () => {
@@ -40,7 +40,7 @@ export default function NewPost() {
 					</InputWrap>
 					{/* <NewPostDialog isOpen={open} handleClose={closeCreateNewPostDialog} dialogContent={<NewPostDialogContent />} /> */}
 					<NewPostDialog isOpen={open} handleClose={closeCreateNewPostDialog}>
-						<NewPostDialogContent />
+						<NewPostDialogContent handleClose={closeCreateNewPostDialog} />
 					</NewPostDialog>
 				</FeedAvatarInputWrap>
 				<FeedOptionButtons>

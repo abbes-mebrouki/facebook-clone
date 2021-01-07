@@ -28,27 +28,30 @@ import { BsCaretDownFill as AccountArrowIcon } from "react-icons/bs"
 
 import AvatarImg from "../imgs/avatar-img.jpg"
 
+import Icons from "../icons"
+
+import { NavSreenSizes } from "../styles/global-styles"
+
 //--------------------
 
-const NavBarChildrenSharedStyles = css`
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	background-color: red;
-	padding: 10px 20px;
-`
+const { navSc696, navSc1096, navSc996 } = NavSreenSizes
 
 const NavBarLeftWrap = styled.div`
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	background-color: inherit;
-
-	max-height: 55px;
-	/* overflow-y: hidden; */
-
+	height: 55px;
+	position: absolute;
+	top: 0;
+	left: 16px;
+	z-index: 19;
 	img {
 		max-width: 40px;
+	}
+
+	@media (max-width: ${navSc696}) {
+		position: static;
 	}
 `
 const NavBarRightWrap = styled.div`
@@ -60,16 +63,59 @@ const NavBarRightWrap = styled.div`
 	overflow-y: hidden;
 	width: fit-content;
 	height: 100%;
+	position: absolute;
+	top: 0;
+	right: 16px;
+	z-index: 19;
+
+	@media (max-width: ${navSc696}) {
+		position: static;
+	}
+	@media (max-width: ${navSc1096}) {
+		margin-left: 16px;
+	}
 `
+
+const NavMidBtnsWrap = styled.div`
+	${() => css`
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		height: 55px;
+	`}
+`
+
 const NavBarMiddleWrap = styled.div`
+	/* ${() => css`
+		display: grid;
+		align-items: center;
+		width: 100%;
+		height: 56px;
+		background-color: red;
+	`} */
 	display: flex;
 	flex-direction: row;
 	align-items: center;
+	justify-content: center;
 	background-color: inherit;
 	overflow-y: hidden;
+	flex: 1;
+	z-index: 9;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+
+	@media (max-width: ${navSc696}) {
+		justify-content: flex-start;
+		position: static;
+	}
 `
 
 export default function NavBar() {
+	const { HumburgerIcon } = Icons
+
 	return (
 		<NavBarWrap>
 			<NavBarLeftWrap>
@@ -80,25 +126,30 @@ export default function NavBar() {
 				</InputWrap>
 			</NavBarLeftWrap>
 			<NavBarMiddleWrap>
+				{/* <NavMidBtnsWrap> */}
 				<MiddleNavButton active>
 					<HomeIcon />
 				</MiddleNavButton>
 				<MiddleNavButton>
 					<UsersIcon />
 				</MiddleNavButton>
-				<MiddleNavButton>
-					<MeBadge badgeContent={3} >
-						<TvIcon />
-					</MeBadge>
-				</MiddleNavButton>
+					<MiddleNavButton>
+						<MeBadge badgeContent={3} overlap="circle" color='white'>
+							<TvIcon />
+						</MeBadge>
+					</MiddleNavButton>
 				<MiddleNavButton>
 					<RiStore2Line />
 				</MiddleNavButton>
-				<MiddleNavButton>
-					<MeBadge >
+				<MiddleNavButton groupsBtn>
+					<MeBadge>
 						<GroupsIcon />
 					</MeBadge>
 				</MiddleNavButton>
+				<MiddleNavButton hamBtn>
+					<HumburgerIcon />
+				</MiddleNavButton>
+				{/* </NavMidBtnsWrap> */}
 			</NavBarMiddleWrap>
 			<NavBarRightWrap>
 				<NavProfileButton>
