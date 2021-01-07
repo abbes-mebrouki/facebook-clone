@@ -134,7 +134,7 @@ export default function NavBar() {
 					<UsersIcon />
 				</MiddleNavButton>
 					<MiddleNavButton>
-						<MeBadge badgeContent={3} overlap="circle" color='white'>
+						<MeBadge badgeContent={3} overlap="circle">
 							<TvIcon />
 						</MeBadge>
 					</MiddleNavButton>
