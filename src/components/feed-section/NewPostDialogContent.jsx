@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React, {useState, useEffect} from "react"
 import { MeAvatar, MeIconButton, NavIconButton } from "../raw-components"
 import {
 	DialogContentWrap,
@@ -12,10 +12,16 @@ import Icons from "../../icons"
 import bgsImg from '../../imgs/new-post-dialog-fonts-img.png'
 
 import AvatarPic from "../../imgs/avatar-img.jpg"
+import {useDispatch, useSelector} from 'react-redux'
+import {setPostInMindAction, newPostAction} from '../../redux/actions/posts-actions'
+import {getPostInMind} from '../../redux/selectors/posts_selectors'
+
+
 
 export default function NewPostDialogContent({handleClose}) {
 
-  // console.log('content props: ' , props);
+	const dispatch = useDispatch()
+	
 	const {
 		CloseIcon,
 		FeedPhotoIcon,
@@ -26,22 +32,46 @@ export default function NewPostDialogContent({handleClose}) {
     LocationIcon,
     PersonIcon,
     MoreIcon,
-    SmileyFaceIcon
+		SmileyFaceIcon,
+		
 	} = Icons
 
-
-  const [postTxt, setPostTxt] = useState('')
+	const postInMind = useSelector((state) => getPostInMind(state))
+	
+	const [postToPublish, setPostToPublish] = useState(postInMind)
+	const {postContent} = postToPublish
+	
+	useEffect(() => {
+		setPostToPublish(postInMind)
+	}, [postInMind])
 
   const handlePostTxtChange = (e) => {
-    setPostTxt(e.target.value);
+		setPostToPublish(
+			{
+				...postToPublish, 
+				postContent: e.target.value
+			}
+			);
   }
+
+
+	const closeDialog = () => {
+		dispatch(setPostInMindAction(postToPublish))
+		handleClose()
+	}
+
+	function publishPost(){
+		dispatch(newPostAction(postToPublish))
+		dispatch(setPostInMindAction({...postToPublish, postContent: ''}))
+		handleClose()
+	}
 
 	return (
 		<DialogContentWrap>
 			<NewPostDialogHeaderWrap>
 				<div className="title-and-close-btn">
 					<h4>Create Post</h4>
-					<MeIconButton onClick={handleClose}>
+					<MeIconButton onClick={closeDialog}>
 						<CloseIcon />
 					</MeIconButton>
 				</div>
@@ -62,18 +92,19 @@ export default function NewPostDialogContent({handleClose}) {
 
 			<NewPostDialogInputWrap>
 				<textarea
-          value={postTxt}
-          onChange={handlePostTxtChange}
+					value={postToPublish}
+					onChange={handlePostTxtChange}
 					type="textarea"
 					placeholder="What's on your mind, Abbes?"
 					rows="3"
+					value={postContent}
 				/>
-        <div className="post-bg-and-emojis">
-          <div className="bgs-btn">
-            <img src={bgsImg} alt="bbackgrounds button image"/>
-          </div>
-          <SmileyFaceIcon />
-        </div>
+				<div className="post-bg-and-emojis">
+					<div className="bgs-btn">
+						<img src={bgsImg} alt="bbackgrounds button image" />
+					</div>
+					<SmileyFaceIcon />
+				</div>
 			</NewPostDialogInputWrap>
 
 			<NewPostDialogFooterWrap>
@@ -100,7 +131,11 @@ export default function NewPostDialogContent({handleClose}) {
 						</MeIconButton>
 					</div>
 				</div>
-				<FeedButton disable={postTxt.length != 0 ? undefined : true} clearBtn>
+				<FeedButton
+					disable={postToPublish.postContent ? undefined : true}
+					clearBtn
+					onClick={publishPost}
+				>
 					Post
 				</FeedButton>
 			</NewPostDialogFooterWrap>

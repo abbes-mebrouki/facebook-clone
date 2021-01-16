@@ -1,4 +1,6 @@
 import React from "react"
+import picOne from '../../imgs/faces/one.jpg'
+
 import {
 	PostWrap,
 	PostHeader,
@@ -33,10 +35,9 @@ export default function FeedPost({postData}) {
 		id,
 		username,
 		pubDate,
-		pubType,
     userProfilePic,
     rtl,
-		textContent,
+		postContent,
 		hasMedia,
 		mediaContent,
 		impretions,
@@ -46,7 +47,7 @@ export default function FeedPost({postData}) {
 	return (
 		<PostWrap>
 			<PostHeader>
-				<MeAvatar src={userProfilePic} FeedNav />
+				<MeAvatar src={picOne} FeedNav />
 				<PostHeaderTitleWrap>
 					<h4>{username}</h4>
 					<div className="time-publish-type">
@@ -61,7 +62,7 @@ export default function FeedPost({postData}) {
 
 			<PostTextContent rtl={rtl}>
 				<p>
-				{textContent}
+				{postContent}
 				</p>
 			</PostTextContent>
 			<PostMediaContent hasMedia={hasMedia}>

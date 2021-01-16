@@ -53,7 +53,7 @@ const _696ScreenStyles = (component = null) => {
 				${sharedStyles};
 
 				// non shared styles
-				margin-top: ${component === "new_post_wrap" ? "0" : "10px"};
+				margin-top: 10px;
 			}
 		`
 	}

@@ -30,6 +30,9 @@ import FeedData from "./feed-section-data"
 import CreateRoomCard from "./CreateRoomCard"
 import Storeis from "./Storeis"
 
+import {useSelector} from "react-redux"
+import {getAllPosts} from '../../redux/selectors/posts_selectors'
+
 export default function FeedSection() {
 	const {
 		MoreIcon,
@@ -43,13 +46,15 @@ export default function FeedSection() {
 		ShareIcon,
 	} = Icons
 
+	const postsList = useSelector(state => getAllPosts(state))
+
 	return (
 		<MainWrap>
 			{isMobileOnly ? (
 				<>
 					<NewPost />
 					<CreateRoomCard />
-					<Storeis />
+					{/* <Storeis /> */}
 				</>
 			) : (
 				<>
@@ -59,7 +64,7 @@ export default function FeedSection() {
 				</>
 			)}
 
-			{FeedData.map((item) => (
+			{postsList.map((item) => (
 				<FeedPost key={item.id} postData={item} />
 			))}
 		</MainWrap>
